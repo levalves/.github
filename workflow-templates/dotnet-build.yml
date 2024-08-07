@@ -1,4 +1,4 @@
-name: ZOOP - .Net Build Standard
+name: ZOOP .Net Build Standard
 
 on:
   pull_request:
