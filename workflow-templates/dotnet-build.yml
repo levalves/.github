@@ -1,4 +1,4 @@
-name: ZOOP .Net Build Standard
+name: .Net Build Standard
 
 on:
   pull_request:
@@ -33,4 +33,4 @@ jobs:
       uses: actions/upload-artifact@v1
       with:
         name: artifact
-        path: ${{ github.workpace }}/demo
+        path: ${{ github.workpace }}//demo
