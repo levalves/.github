@@ -1,0 +1,36 @@
+name: ZOOP - .Net Build Standard
+
+on:
+  pull_request:
+    branches: [ $default-branch ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    
+    runs-on: ubuntu-lastest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .Net
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 6.0.x
+
+    - name: Restore dependencias
+      run: dotnet restore
+
+    - name: Build
+      run: dotnet build --configuration Release --no-restore
+
+    - name: Tests
+      run: dotnet test --no-build --verbosity normal 
+
+    - name: Dotnet Publish
+      run: otnet publish --configuration Release -o ${{ github.workpace }}/demo
+    
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v1
+      with:
+        name: artifact
+        path: ${{ github.workpace }}/demo
